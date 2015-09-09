@@ -1,4 +1,6 @@
 ﻿# サマーコース2015の内容
+## 9/9 confrict_test.js の課題を追加(締切9/10中)
+### MarkDown，Good!
 
 ## Day1 JavaScriptを学んだ
 * オブジェクト指向
