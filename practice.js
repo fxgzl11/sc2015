@@ -11,7 +11,7 @@ Number.prototype.waru = function ( num ) {
 var number = 128;
 var result = number.plus(2);
 var result3 = number.kakeru(2);
-var result4 = number.plus(2);
+var result4 = number.waru(2);
 
 
 console.log(result);
