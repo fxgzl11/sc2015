@@ -127,18 +127,19 @@ function onRequest(request, response) {
     }
 	//22時を過ぎると…
 	if(ji>=22){
-	seed+=1;
-	hash = crypto.createHash('md5');
-    hash.update(seed);
-    var hashValue = hash.digest('hex');
-
-    // 16進数で表現されたMD5ハッシュの1、2文字目を取り出し
-    // 整数に変換する
-    var fortuneKey = Number('0x' + hashValue.slice(0, 2));
-	if(fortuneKey<100){
+		seed+=1;
+		hash = crypto.createHash('md5');
+		hash.update(seed);
+		var hashValue = hash.digest('hex');
+		
+		// 16進数で表現されたMD5ハッシュの1、2文字目を取り出し
+		// 整数に変換する
+		var fortuneKey = Number('0x' + hashValue.slice(0, 2));
+		if(fortuneKey<100){
 		yosou="明日は運が悪いかも…？";
-	}else{
-		yosou="明日は運が良いかも…？";
+		}else{
+			yosou="明日は運が良いかも…？";
+		}
 	}
 
     // 占い結果から出力するHTMLを生成する
@@ -152,7 +153,7 @@ function onRequest(request, response) {
       + '<span class="result">'
       + result + '</span>'
       + 'です。</p></div>'
-	  +yosou+
+	  +yosou
       + '<a href="/">トップに戻る</a>';
 
     response.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
