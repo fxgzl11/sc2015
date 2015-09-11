@@ -141,7 +141,7 @@ function onRequest(request, response) {
 
 // 待ち受けするポートとアドレスを指定
 var PORT = 8080;
-var ADDRESS = '192.168.33.10';
+var ADDRESS = '127.0.0.1';
 
 // 指定したポートで待ち受けを開始する
 server.listen(PORT, ADDRESS);
