@@ -15,6 +15,11 @@ server.on('request', function(request, response) {
   // HTTPヘッダーを出力
   Object.keys(request.headers).forEach(function (key) {
     response.write(key + ':  ' + request.headers[key] + '\n');
+	
+	response.write(analyzeRSS(body));
+	
+	
+	
   });
   // レスポンスの終了
   response.end();
@@ -31,7 +36,7 @@ var request = require('request');
 // RSSダウンロード
 request(RSS, function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    analyzeRSS(body).write;
+    analyzeRSS(body);
   }
 });
 
