@@ -13,7 +13,7 @@ var htmlHeader = '<!DOCTYPE html>\
 <head>\
   <meta charset="utf-8">\
   <title>ノード占い</title>\
-  <link rel="stylesheet" type="text/css" href="style.css">\
+  <link rel="stylesheet" type="text/css" href="./style.css">\
 </head>\
 <body>\
 <div class="content">\
@@ -89,9 +89,17 @@ function onRequest(request, response) {
   // データの受信が完了したら実行される関数
   function sendResponse() {
     var query = querystring.parse(request.data);
+	//日付を取得
+	var hiduke=new Date();
+	var tosi=hiduke.getFullYear();
+	var tuki=hiduke.getDay();
+	var hiniti=hiduke.getDate();
+	var ji = hiduke.getHours();
+	
+	var yosou ="";
 
     // 取得したデータをすべて連結してMD5ハッシュを計算する
-    var seed = query.name + query.year + query.month
+    var seed = tosi+tuki+hiniti+query.name + query.year + query.month
       + query.day + query.sex;
     hash = crypto.createHash('md5');
     hash.update(seed);
@@ -117,6 +125,21 @@ function onRequest(request, response) {
     } else {
       result = '大吉';
     }
+	//22時を過ぎると…
+	if(ji>=22){
+	seed+=1;
+	hash = crypto.createHash('md5');
+    hash.update(seed);
+    var hashValue = hash.digest('hex');
+
+    // 16進数で表現されたMD5ハッシュの1、2文字目を取り出し
+    // 整数に変換する
+    var fortuneKey = Number('0x' + hashValue.slice(0, 2));
+	if(fortuneKey<100){
+		yosou="明日は運が悪いかも…？";
+	}else{
+		yosou="明日は運が良いかも…？";
+	}
 
     // 占い結果から出力するHTMLを生成する
     var resultStr = '<div><p>'
@@ -129,6 +152,7 @@ function onRequest(request, response) {
       + '<span class="result">'
       + result + '</span>'
       + 'です。</p></div>'
+	  +yosou+
       + '<a href="/">トップに戻る</a>';
 
     response.writeHead(200, {'Content-Type': 'text/html; charset=UTF-8'});
