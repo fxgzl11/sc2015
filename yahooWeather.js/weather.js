@@ -8,9 +8,6 @@ var server = http.createServer(); // Web サーバーの
 server.on('request', function(request, response) {
   // responseオブジェクトに，ステータスコード200でHTTPレスポンスヘッダを出力
   response.writeHead(200);
-  
-  response.write(items);
-  
   // リクエストURLを出力
   response.write('URL:  ' + request.url + '\n');
   // HTTPメソッドを出力
@@ -39,8 +36,6 @@ request(RSS, function (error, response, body) {
   }
 });
 
-var items = obj.rss.channel[0].item;
-
 function analyzeRSS(xml) {
   // XMLをJSのオブジェクトに変換
   parseString (xml, function (err, obj) {
@@ -52,6 +47,7 @@ function analyzeRSS(xml) {
     // 変換の状況の確認用
     console.log(JSON.stringify(obj));
 
+    var items = obj.rss.channel[0].item;
     for (var i in items) {
       var item = items[i];
       console.log(item);
