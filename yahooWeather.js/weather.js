@@ -16,6 +16,7 @@ server.on('request', function(request, response) {
   Object.keys(request.headers).forEach(function (key) {
     response.write(key + ':  ' + request.headers[key] + '\n');
   });
+  response.write(item );
   // レスポンスの終了
   response.end();
 });
@@ -48,7 +49,6 @@ function analyzeRSS(xml) {
 
     var items = obj.rss.channel[0].item;
     for (var i in items) {
-	response.write(item );
       var item = items[i];
       console.log(item);
     }
