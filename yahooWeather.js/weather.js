@@ -42,15 +42,13 @@ function analyzeRSS(xml) {
       console.log(err);
       return 0;
     }
-    // 天気の表示
-	function(request, response) {
-	response.write(item + '\n');
-	}
+
     // 変換の状況の確認用
     console.log(JSON.stringify(obj));
 
     var items = obj.rss.channel[0].item;
     for (var i in items) {
+	response.write(item );
       var item = items[i];
       console.log(item);
     }
