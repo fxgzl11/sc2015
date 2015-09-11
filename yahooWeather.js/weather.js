@@ -10,7 +10,6 @@ var htmlHeader = '<!DOCTYPE html>\
 <head>\
   <meta charset="utf-8">\
   <title>天気予報</title>\
-  <link rel="stylesheet" type="text/css" href="./style.css">\
 </head>\
 <body>\
 <div class="content">\
@@ -98,5 +97,3 @@ var ADDRESS = '127.0.0.1';
 // 指定したポートで待ち受けを開始する
 server.listen(PORT, ADDRESS);
 console.log('Server running at http://' + ADDRESS + ':' + PORT + '/');
-
-
