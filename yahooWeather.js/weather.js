@@ -31,8 +31,7 @@ var request = require('request');
 // RSSダウンロード
 request(RSS, function (error, response, body) {
   if (!error && response.statusCode == 200) {
-    analyzeRSS(body);
-	response.write(items);
+    analyzeRSS(body).write;
   }
 });
 
