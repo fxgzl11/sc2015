@@ -19,8 +19,7 @@ server.on('request', function(request, response) {
   // レスポンスの終了
   response.end();
 });
-// ポート番号と，Vagrantファイルで指定したipアドレスを指定
-server.listen(8080, '127.0.0.1');
+
 
 // Yahoo!Japan 天気予報 RSS
 var RSS = "http://rss.weather.yahoo.co.jp/rss/days/6110.xml";
@@ -55,3 +54,11 @@ function analyzeRSS(xml) {
     }
   })
 }
+
+// 待ち受けするポートとアドレスを指定
+var PORT = 8080;
+var ADDRESS = '127.0.0.1';
+
+// 指定したポートで待ち受けを開始する
+server.listen(PORT, ADDRESS);
+console.log('Server running at http://' + ADDRESS + ':' + PORT + '/');
